@@ -19,4 +19,6 @@ jobs:
 
 networks: (( param "please set networks" ))
 
-properties: {}
+properties:
+  tmate:
+    host: (( grab jobs.tmate.networks[0].static_ips[0] ))

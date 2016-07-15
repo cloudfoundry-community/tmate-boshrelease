@@ -15,6 +15,7 @@ jobs:
   - name: tmate
     networks:
       - name: tmate1
+        static_ips: (( static_ips 0 ))
 
 compilation:
   cloud_properties:

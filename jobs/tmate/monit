@@ -3,3 +3,9 @@ check process tmate
   start program "/var/vcap/jobs/tmate/bin/monit_debugger tmate_ctl '/var/vcap/jobs/tmate/bin/ctl start'"
   stop program "/var/vcap/jobs/tmate/bin/monit_debugger tmate_ctl '/var/vcap/jobs/tmate/bin/ctl stop'"
   group vcap
+
+check process webcfg
+  with pidfile /var/vcap/sys/run/tmate/webcfg.pid
+  start program "/var/vcap/jobs/tmate/bin/monit_debugger webcfg_ctl '/var/vcap/jobs/tmate/bin/webcfg start'"
+  stop program "/var/vcap/jobs/tmate/bin/monit_debugger webcfg_ctl '/var/vcap/jobs/tmate/bin/webcfg stop'"
+  group vcap

@@ -12,6 +12,6 @@ tmate/msgpack-1.4.2.tar.gz:
   sha: 6d284861c47565a5ea4ed135b803225e67cf95e6
   size: 776384
 tmate/tmate-slave-master.tar.gz:
-  object_id: 625e31b0-923e-45e0-ab20-7881ad25b72d
-  sha: 55c2b3d445ca1fd4b5d9cde682fc2e51fde8287f
-  size: 872896
+  object_id: 938095cf-f064-4808-81a9-0f780200518a
+  sha: 834e468fce7eb71efbdb52c548af27ed0c38e810
+  size: 897133

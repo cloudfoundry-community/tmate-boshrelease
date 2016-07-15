@@ -12,6 +12,7 @@ jobs:
   - name: tmate
     networks:
       - name: tmate1
+        static_ips: (( static_ips 0 ))
     persistent_disk: (( grab meta.persistent_disk ))
 
 compilation:

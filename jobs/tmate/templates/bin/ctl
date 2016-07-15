@@ -14,6 +14,7 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
+    mkdir -p ${STORE_DIR}/keys
     if [[ ! -f ${STORE_DIR}/keys/ssh_host_rsa_key ]]; then
       ssh-keygen -b 4096 -t rsa   -f ${STORE_DIR}/keys/ssh_host_rsa_key   -N ''
       ssh-keygen -b 256  -t ecdsa -f ${STORE_DIR}/keys/ssh_host_ecdsa_key -N ''
@@ -22,7 +23,7 @@ case $1 in
     (
     echo "####  tmate client configuration  #################"
     echo
-    echo "set -g tmate-server-host              \"your-tmate-server\""
+    echo "set -g tmate-server-host              \"<%= p('tmate.host') %>\""
     echo "set -g tmate-server-port               <%= p('tmate.port') %>"
     echo "set -g tmate-server-rsa-fingerprint   \"$(ssh-keygen -l -f ${STORE_DIR}/keys/ssh_host_rsa_key   | awk '{print $2}')\""
     echo "set -g tmate-server-ecdsa-fingerprint \"$(ssh-keygen -l -f ${STORE_DIR}/keys/ssh_host_ecdsa_key | awk '{print $2}')\""
@@ -35,8 +36,9 @@ case $1 in
     echo $$ > $PIDFILE
 
     mkdir -p ${STORE_DIR}/keys
-    exec tmate-slave \
+    exec tmate-slave <% if p('tmate.debug') %>-vvvvvv<% end %> \
          -k ${STORE_DIR}/keys \
+         -h <%= p('tmate.host') %> \
          -p <%= p('tmate.port') %> \
          >>${LOG_DIR}/$JOB_NAME.log 2>&1
 
