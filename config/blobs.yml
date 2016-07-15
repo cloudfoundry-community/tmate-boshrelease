@@ -1,1 +1,17 @@
---- {}
+---
+tmate/libevent-2.0.22-stable.tar.gz:
+  object_id: 8966470b-6ada-4913-ae72-e40c267fdd07
+  sha: a586882bc93a208318c70fc7077ed8fca9862864
+  size: 854987
+tmate/libssh-0.7.2.tar.gz:
+  object_id: 73aa2799-a31b-4047-b813-d094e27dfc5e
+  sha: 83320b5c49a2fb32cc6ee32a307ece370863262f
+  size: 479905
+tmate/msgpack-1.4.2.tar.gz:
+  object_id: aa856e3c-e599-40ce-99fb-f9dccb95c1a8
+  sha: 6d284861c47565a5ea4ed135b803225e67cf95e6
+  size: 776384
+tmate/tmate-slave-master.tar.gz:
+  object_id: 625e31b0-923e-45e0-ab20-7881ad25b72d
+  sha: 55c2b3d445ca1fd4b5d9cde682fc2e51fde8287f
+  size: 872896
