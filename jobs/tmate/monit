@@ -1,0 +1,5 @@
+check process tmate
+  with pidfile /var/vcap/sys/run/tmate/tmate.pid
+  start program "/var/vcap/jobs/tmate/bin/monit_debugger tmate_ctl '/var/vcap/jobs/tmate/bin/ctl start'"
+  stop program "/var/vcap/jobs/tmate/bin/monit_debugger tmate_ctl '/var/vcap/jobs/tmate/bin/ctl stop'"
+  group vcap

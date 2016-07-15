@@ -1,0 +1,12 @@
+---
+# when you upgrade this, you need to run ./packages/tmate/repack
+# from the root of the BOSH release source repository.
+#
+name: tmate
+dependencies: []
+files:
+    # retrieved 14 Jul 2016, @090c2b0 (https://github.com/tmate-io/tmate-slave)
+  - tmate/tmate-slave-master.tar.gz
+  - tmate/libevent-2.0.22-stable.tar.gz
+  - tmate/msgpack-1.4.2.tar.gz
+  - tmate/libssh-0.7.2.tar.gz

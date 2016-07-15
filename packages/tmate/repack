@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# this script should be run on a workstation in order
+# to repack the tmate source zip as (A) a tarball and
+# (B) without the autotools dependency
+
+set -ex
+cd blobs/tmate
+unzip tmate-slave-master.zip
+cd tmate-slave-master
+./autogen.sh
+cd ..
+tar -czvf tmate-slave-master.tar.gz tmate-slave-master/
+rm -rf tmate-slave-master/ tmate-slave-master.zip
