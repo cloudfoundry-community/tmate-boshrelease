@@ -1,76 +1,76 @@
-# BOSH Release for tmate
+BOSH Release for tmate
+======================
 
-## Usage
+[tmate][1] is a terminal collaboration utility built atop tmux and
+SSH.  Canonically, tmate sessions transit the [tmate.io][1]
+service, hosted on the public Internet.
 
-To use this bosh release, first upload it to your bosh:
+Sometimes, that's just not desirable.
 
-```
-bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/tmate-boshrelease.git
-cd tmate-boshrelease
-bosh upload release releases/tmate-1.yml
-```
+This repository packages the server components of tmate up into an
+easy-to-use BOSH release for deploying a tmate server on your
+terms.
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+Getting Started on BOSH-lite
+----------------------------
 
-```
-templates/make_manifest warden
-bosh -n deploy
-```
+Before you can deploy tmate, you're going to need to upload this
+BOSH release to your BOSH-lite, using the CLI:
 
-For AWS EC2, create a single VM:
+    bosh target https://192.168.50.4:25555
+    bosh upload release http://genesis.starkandwayne.com/v1/release/tmate/latest.tgz
 
-```
-templates/make_manifest aws-ec2
-bosh -n deploy
-```
+You can create a small, working manifest file from this git
+repository:
 
-### Override security groups
+    git clone https://github.com/cloudfoundry-community/tmate-boshrelease
+    cd tmate-boshrelease
+    ./templates/make_manifest warden
+    bosh -n deploy
 
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
+Once that's deployed, you can pull down the `~/.tmate.conf`
+configuration for this tmate server (10.244.141.2 will be the IP
+of the deployed tmate server):
 
-Create a file `my-networking.yml`:
+    curl http://10.244.141.2 > ~/.tmate.conf
+    tmate
 
-``` yaml
----
-networks:
-  - name: tmate1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - tmate
-```
+You should see something like this:
 
-Where `- tmate` means you wish to use an existing security group called `tmate`.
-
-You now suffix this file path to the `make_manifest` command:
-
-```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
-```
-
-### Development
-
-As a developer of this release, create new releases and upload them:
-
-```
-bosh create release --force && bosh -n upload release
-```
-
-### Final releases
-
-To share final releases:
-
-```
-bosh create release --final
-```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
+![tmate Session][screen1]
 
 
-```
-bosh create release --final --version 2.1
-```
+Configuring tmate
+-----------------
 
-After the first release you need to contact [Dmitriy Kalinin](mailto://dkalinin@pivotal.io) to request your project is added to https://bosh.io/releases (as mentioned in README above).
+Configuration should be pretty straightforward.  There are only
+three properties to set:
+
+  - `tmate.debug` - If set to true, enables extra debugging from
+     the tmate processs (which you can find in the logs, at
+     `/var/vcap/sys/log/tmate/tmate.log`)
+  - `tmate.port` - The TCP port to listen to for inbound
+    connection requests.  Because the VM already has SSH running,
+    this needs to be something other than "22".  We settled on
+    a default of "2222".
+  - `tmate.host` - The IP address or hostname to advertise to
+    connecting clients.
+
+That last one is the most important.
+
+For ease-of-use, you're going to want to assign a static IP
+address to your tmate server job, and then configure DNS to point
+a memorable name at that address.  For example:
+
+    $ dig IN A tmate.example.com
+    tmate.example.com.      9999    IN      A       10.10.10.10
+
+This DNS name is what you want to put in your deployment manifest
+for the `tmate.host` property.  Then, when clients connect, the
+connection string for others to connect up to the tmate session
+will be based on that hostname, and not the IP (or worse,
+"localhost").
+
+
+[1]:       https://tmate.io
+[screen1]: doc/session.png
