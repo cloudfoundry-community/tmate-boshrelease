@@ -36,7 +36,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     mkdir -p ${STORE_DIR}/keys
-    exec tmate-slave <% if p('tmate.debug') %>-vvvvvv<% end %> \
+    exec tmate-ssh-server <% if p('tmate.debug') %>-vvvvvv<% end %> \
          -k ${STORE_DIR}/keys \
          -h <%= p('tmate.host') %> \
          -p <%= p('tmate.port') %> \

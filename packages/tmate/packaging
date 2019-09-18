@@ -8,6 +8,9 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
 export HOME=/var/vcap
 
+TMATE_VERSION=2.3.0
+LIBSSH_VERSION=0.9.0
+
 package="tmate"
 LD_LIBRARY_PATH="/var/vcap/packages/${package}/lib"
 PKG_CONFIG_PATH="/var/vcap/packages/${package}/lib/pkgconfig"
@@ -39,5 +42,5 @@ cmakeit() {
 }
 package "libevent-2.0.22-stable.tar.gz"
 package "msgpack-1.4.2.tar.gz"
-cmakeit "libssh-0.7.2.tar.gz"
-package "tmate-slave-master.tar.gz"
+cmakeit "libssh-$LIBSSH_VERSION.tar.gz"
+package "tmate-ssh-server-$TMATE_VERSION.tar.gz"
