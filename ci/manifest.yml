@@ -1,0 +1,38 @@
+---
+name: tmate
+
+instance_groups:
+  - name: master
+    azs:  [z1]
+
+    stemcell: default
+    vm_type: default
+    networks:
+      - name: default
+
+    instances: 1
+    jobs:
+      - name:    tmate
+        release: tmate
+        properties:
+          tmate:
+            host: tmate.ci.starkandwayne.com
+
+
+stemcells:
+- alias:   default
+  os:      ubuntu-xenial
+  version: latest
+
+update:
+  canaries: 1
+  canary_watch_time: 1000-120000
+  max_in_flight: 50
+  serial: false
+  update_watch_time: 1000-120000
+
+releases:
+- name:    tmate
+  version: latest
+  #url:
+  #sha1:

@@ -5,6 +5,9 @@ meta:
   target:  pipes
   url:     https://pipes.starkandwayne.com
 
+  manifest:
+    path: ci/manifest.yml
+
   git:
     email: ci@starkandwayne.com
     name:  Stark & Wayne CI Bot
