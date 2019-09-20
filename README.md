@@ -65,7 +65,7 @@ a memorable name at that address.  For example:
     tmate.example.com.      9999    IN      A       10.10.10.10
 
 This DNS name is what you want to put in your deployment manifest
-for the `tmate.host` property.  Then, when clients connect, the
+for the `host` property.  Then, when clients connect, the
 connection string for others to connect up to the tmate session
 will be based on that hostname, and not the IP (or worse,
 "localhost").
