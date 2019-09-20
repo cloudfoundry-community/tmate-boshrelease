@@ -3,12 +3,19 @@
 # this script should be run on a workstation in order to repack
 # the tmate source tarball without the autotools dependency
 
+TMATE_VERSION=2.3.0
+
 set -ex
-pushd blobs/tmate
-  curl -L https://github.com/tmate-io/tmate-slave/archive/master.tar.gz | tar -xzv
-  pushd tmate-slave-master
-    ./autogen.sh
-    popd
-  tar -czvf tmate-slave-master.tar.gz tmate-slave-master/
-  rm -rf tmate-slave-master/
+curl -L https://github.com/tmate-io/tmate-ssh-server/archive/$TMATE_VERSION.tar.gz | tar -xzv
+pushd tmate-ssh-server-$TMATE_VERSION
+  ./autogen.sh
   popd
+tar -czvf tmate-ssh-server-$TMATE_VERSION.tar.gz tmate-ssh-server-$TMATE_VERSION
+rm -rf tmate-ssh-server-$TMATE_VERSION
+bosh add-blob tmate-ssh-server-$TMATE_VERSION.tar.gz tmate/tmate-ssh-server-$TMATE_VERSION.tar.gz
+rm tmate-ssh-server-$TMATE_VERSION.tar.gz
+
+# grab libssh, and repackage it from xz to gz for easier compilation
+curl -L https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz | xz -d | gzip > libssh-0.9.0.tar.gz
+bosh add-blob libssh-0.9.0.tar.gz tmate/libssh-0.9.0.tar.gz
+rm libssh-0.9.0.tar.gz
