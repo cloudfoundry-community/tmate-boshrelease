@@ -11,11 +11,13 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 
 properties:
-  tmate.debug:
+  debug:
     description: Enable additional debugging from the tmate server (to the log file)
     default:     false
-  tmate.host:
+
+  host:
     description: The hostname or IP address to advertise to connecting clients
-  tmate.port:
+
+  port:
     description: The TCP port on which to run the tmate server
     default:     2222

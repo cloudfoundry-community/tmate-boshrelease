@@ -1,6 +1,11 @@
 BOSH Release for tmate
 ======================
 
+[![Built by pipes.starkandwayne.com][badge]][pipes]
+
+[pipes]: https://pipes.starkandwayne.com/teams/main/pipelines/tmate-boshrelease
+[badge]: https://pipes.starkandwayne.com/api/v1/teams/main/pipelines/tmate-boshrelease/badge
+
 [tmate][1] is a terminal collaboration utility built atop tmux and
 SSH.  Canonically, tmate sessions transit the [tmate.io][1]
 service, hosted on the public Internet.
@@ -11,28 +16,20 @@ This repository packages the server components of tmate up into an
 easy-to-use BOSH release for deploying a tmate server on your
 terms.
 
-Getting Started on BOSH-lite
-----------------------------
 
-Before you can deploy tmate, you're going to need to upload this
-BOSH release to your BOSH-lite, using the CLI:
+Deploying tmate to your BOSH Director
+-------------------------------------
 
-    bosh target https://192.168.50.4:25555
-    bosh upload release http://genesis.starkandwayne.com/v1/release/tmate/latest.tgz
+We have a sample manifest, in `manifests/tmate.yml` that you can
+tweak and deploy to get started:
 
-You can create a small, working manifest file from this git
-repository:
-
-    git clone https://github.com/cloudfoundry-community/tmate-boshrelease
-    cd tmate-boshrelease
-    ./templates/make_manifest warden
-    bosh -n deploy
+    bosh -e your-bosh-director deploy manifests/tmate.yml \
+         -v public_hostname_or_ip=your.tmate.server.example.com
 
 Once that's deployed, you can pull down the `~/.tmate.conf`
-configuration for this tmate server (10.244.141.2 will be the IP
-of the deployed tmate server):
+configuration for this tmate server:
 
-    curl http://10.244.141.2 > ~/.tmate.conf
+    curl http://your.tmate.server.example.com > ~/.tmate.conf
     tmate
 
 You should see something like this:
@@ -46,14 +43,16 @@ Configuring tmate
 Configuration should be pretty straightforward.  There are only
 three properties to set:
 
-  - `tmate.debug` - If set to true, enables extra debugging from
+  - `debug` - If set to true, enables extra debugging from
      the tmate processs (which you can find in the logs, at
      `/var/vcap/sys/log/tmate/tmate.log`)
-  - `tmate.port` - The TCP port to listen to for inbound
+
+  - `port` - The TCP port to listen to for inbound
     connection requests.  Because the VM already has SSH running,
     this needs to be something other than "22".  We settled on
     a default of "2222".
-  - `tmate.host` - The IP address or hostname to advertise to
+
+  - `host` - The IP address or hostname to advertise to
     connecting clients.
 
 That last one is the most important.

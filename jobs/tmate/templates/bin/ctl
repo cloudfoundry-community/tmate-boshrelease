@@ -23,8 +23,8 @@ case $1 in
     (
     echo "####  tmate client configuration  #################"
     echo
-    echo "set -g tmate-server-host              \"<%= p('tmate.host') %>\""
-    echo "set -g tmate-server-port               <%= p('tmate.port') %>"
+    echo "set -g tmate-server-host              \"<%= p('host') %>\""
+    echo "set -g tmate-server-port               <%= p('port') %>"
     echo "set -g tmate-server-rsa-fingerprint   \"$(ssh-keygen -l -f ${STORE_DIR}/keys/ssh_host_rsa_key   | awk '{print $2}')\""
     echo "set -g tmate-server-ecdsa-fingerprint \"$(ssh-keygen -l -f ${STORE_DIR}/keys/ssh_host_ecdsa_key | awk '{print $2}')\""
     echo
@@ -36,10 +36,10 @@ case $1 in
     echo $$ > $PIDFILE
 
     mkdir -p ${STORE_DIR}/keys
-    exec tmate-ssh-server <% if p('tmate.debug') %>-vvvvvv<% end %> \
+    exec tmate-ssh-server <% if p('debug') %>-vvvvvv<% end %> \
          -k ${STORE_DIR}/keys \
-         -h <%= p('tmate.host') %> \
-         -p <%= p('tmate.port') %> \
+         -h <%= p('host') %> \
+         -p <%= p('port') %> \
          >>${LOG_DIR}/$JOB_NAME.log 2>&1
 
     ;;
