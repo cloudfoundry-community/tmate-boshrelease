@@ -15,8 +15,7 @@ instance_groups:
       - name:    tmate
         release: tmate
         properties:
-          tmate:
-            host: ((public_hostname_or_ip))
+          host: ((public_hostname_or_ip))
 
 
 stemcells:

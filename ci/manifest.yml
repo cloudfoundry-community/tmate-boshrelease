@@ -15,8 +15,7 @@ instance_groups:
       - name:    tmate
         release: tmate
         properties:
-          tmate:
-            host: tmate.ci.starkandwayne.com
+          host: tmate.ci.starkandwayne.com
 
 
 stemcells:
