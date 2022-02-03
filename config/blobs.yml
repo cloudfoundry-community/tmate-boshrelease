@@ -2,14 +2,26 @@ tmate/libevent-2.0.22-stable.tar.gz:
   size: 854987
   object_id: 8966470b-6ada-4913-ae72-e40c267fdd07
   sha: a586882bc93a208318c70fc7077ed8fca9862864
+tmate/libevent-2.1.12-stable.tar.gz:
+  size: 1100847
+  object_id: 74f56632-8f37-4661-7ca8-110cca3fcacf
+  sha: sha256:92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb
 tmate/libssh-0.9.0.tar.gz:
   size: 700309
   object_id: c4702c3e-3afc-4841-4cef-97022950da5c
   sha: sha256:907ee79448c6a40c63535dc65ca68550da1a99f0cf9e040142ac50c0287aa135
+tmate/libssh-0.9.6.tar.gz:
+  size: 717616
+  object_id: 5eed308c-6819-4804-61dc-1eacb2b323ef
+  sha: sha256:63ddcb340e0898eb5c874418c1ff421cf90236fcb3fe5166675e79fa8a7511e4
 tmate/msgpack-1.4.2.tar.gz:
   size: 776384
   object_id: aa856e3c-e599-40ce-99fb-f9dccb95c1a8
   sha: 6d284861c47565a5ea4ed135b803225e67cf95e6
+tmate/msgpack-3.3.0.tar.gz:
+  size: 508001
+  object_id: f21ce64f-9140-4de9-6d8d-21c806937a6a
+  sha: sha256:6e114d12a5ddb8cb11f669f83f32246e484a8addd0ce93f274996f1941c1f07b
 tmate/tmate-ssh-server-2.3.0.tar.gz:
   size: 902736
   object_id: 6b0af76b-b7a2-462c-471d-5312608a9f28

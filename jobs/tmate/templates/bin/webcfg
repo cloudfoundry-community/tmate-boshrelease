@@ -17,6 +17,15 @@ case $1 in
     # store pid in $PIDFILE
     echo $$ > $PIDFILE
 
+    SHUTDOWN_SWITCH="N"
+    OS_VERSION="$(lsb_release -sc)"
+    echo "Detected OS is $OS_VERSION"
+    
+    if [ $OS_VERSION == "xenial" ]; then
+      # Clear the "N" command needed for bionic and newer versions associated with netcat, not supported with xenial
+      SHUTDOWN_SWITCH=""  
+    fi
+
     while true; do
       (
        echo "####  tmate client configuration  #################"
@@ -29,7 +38,7 @@ case $1 in
        echo
        echo "###################################################"
        echo
-      ) | nc -l 80 >/dev/null
+      ) | nc -l$SHUTDOWN_SWITCH 80 >/dev/null
     done >>${LOG_DIR}/webcfg.log 2>&1
 
     ;;

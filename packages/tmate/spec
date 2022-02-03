@@ -7,6 +7,6 @@ dependencies: []
 files:
     # retrieved 14 Jul 2016, @090c2b0 (https://github.com/tmate-io/tmate-ssh-server)
   - tmate/tmate-ssh-server-*.tar.gz
-  - tmate/libevent-2.0.22-stable.tar.gz
-  - tmate/msgpack-1.4.2.tar.gz
+  - tmate/libevent-2.1.12-stable.tar.gz
+  - tmate/msgpack-3.3.0.tar.gz
   - tmate/libssh-*.tar.gz
