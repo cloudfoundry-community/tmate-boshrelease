@@ -35,6 +35,6 @@ variables:
 
 releases:
 - name:    tmate
-  version: 1.0.1
-  url:     https://github.com/cloudfoundry-community/tmate-boshrelease/releases/download/v1.0.1/tmate-1.0.1.tgz
-  sha1:    b7a3696e42334c8107e816285e49aa36b6cd8520
+  version: 1.0.2
+  url:     https://github.com/cloudfoundry-community/tmate-boshrelease/releases/download/v1.0.2/tmate-1.0.2.tgz
+  sha1:    30e3469003c2326ed818b410ceaea26c7443ee9b

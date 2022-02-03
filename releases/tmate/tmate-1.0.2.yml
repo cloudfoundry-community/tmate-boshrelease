@@ -1,0 +1,21 @@
+name: tmate
+version: 1.0.2
+commit_hash: 6fd1ab4
+uncommitted_changes: false
+jobs:
+- name: tmate
+  version: e26ddd4ceb7436db44d824e05ced1a858ca484c4822d4e575324015b8f3b675c
+  fingerprint: e26ddd4ceb7436db44d824e05ced1a858ca484c4822d4e575324015b8f3b675c
+  sha1: sha256:322046f3bc9677a5a178f6815c3735f3c9350d58af7b1bf48af17315b14e8900
+  packages:
+  - tmate
+packages:
+- name: tmate
+  version: d96d5e2db9ab578f042fb7350e9c635837945a2e5ea07376056a78174a79f628
+  fingerprint: d96d5e2db9ab578f042fb7350e9c635837945a2e5ea07376056a78174a79f628
+  sha1: sha256:69d596a628b9adab7983ec7a8b64d59e1ed59ee48d38d5c209446844b291fb0d
+  dependencies: []
+license:
+  version: 8820acd566a31ce42b08d477883d9e40baab3c05aae65e981699750edc18b481
+  fingerprint: 8820acd566a31ce42b08d477883d9e40baab3c05aae65e981699750edc18b481
+  sha1: sha256:11145cd7592fa9eba09a19209de40193676d07b76d75fb713862075b0f8f6eba
